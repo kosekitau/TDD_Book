@@ -3,5 +3,5 @@ class Dollar:
         self.amount: int = amount
         pass
 
-    def times(self, multiplier: int) -> None:
-        self.amount *= multiplier
+    def times(self, multiplier: int) -> int:
+        return self.amount * multiplier

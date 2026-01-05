@@ -1,7 +1,7 @@
-from dollar import Dollar
+from src.dollar import Dollar
 
 
-class MonkeyTest:
+class Test_Monkey:
     def test_Multiplication(self):
         five = Dollar(5)
         five.times(2)

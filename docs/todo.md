@@ -4,5 +4,5 @@
 - ~~$5 * 2 = $10~~
 - ~~Dollarの副作用どうする？ ~~
 - Moneyの丸め処理どうする？
-- equals()
+- ~~equals()~~
 - hashCode()

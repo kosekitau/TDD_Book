@@ -9,3 +9,6 @@ class Test_Money:
         assert 10 == product
         product = five.times(multiplier=3)
         assert 15 == product
+
+    def test_Equality(self) -> None:
+        assert Dollar(amount=5).equals(Dollar(amount=5))

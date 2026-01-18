@@ -8,4 +8,7 @@
 - hashCode()
 - nullとの等価性比較
 - 他のオブジェクトとの等価性比較
-- 5 CHF * 2 = 10 CHF
+- ~~5 CHF * 2 = 10 CHF~~
+- Dollar と Franc が重複している
+- Dollar と Franc で重複する equals を一般化したい
+- Dollar と Franc で重複する times を一般化したい

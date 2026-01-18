@@ -2,9 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class Money(ABC):
-    def __init__(self, amount: int) -> None:
-        self.amount: int = amount
-
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Money):
             return False
@@ -14,9 +11,8 @@ class Money(ABC):
     def times(self, multiplier: int) -> None:
         pass
 
-    @abstractmethod
-    def currency(self) -> None:
-        pass
+    def return_currency(self) -> str:
+        return self.currency
 
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す

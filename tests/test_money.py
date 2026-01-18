@@ -16,6 +16,7 @@ class Test_Money:
         assert Dollar(amount=5) != Dollar(amount=6)
         assert Franc(amount=5) == Franc(amount=5)
         assert Franc(amount=5) != Franc(amount=6)
+        assert Dollar(amount=5) != Franc(amount=5)
 
     def test_FrancMultiplication(self) -> None:
         five = Franc(amount=5)

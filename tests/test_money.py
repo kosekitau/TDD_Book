@@ -6,7 +6,7 @@ from src.money import Money
 
 class Test_Money:
     def test_Multiplication(self) -> None:
-        five = Money.dollar(amount=5)
+        five: Dollar = Money.dollar(amount=5)
         assert Dollar(amount=10) == five.times(2)
         assert Dollar(amount=15) == five.times(3)
 

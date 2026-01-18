@@ -20,6 +20,6 @@ class Test_Money:
         assert Money.franc(amount=10) == five.times(2)
         assert Money.franc(amount=15) == five.times(3)
 
-    def test_Currency(self):
+    def test_Currency(self) -> None:
         assert "USD" == Money.dollar(amount=1).currency()
         assert "CHF" == Money.franc(amount=1).currency()

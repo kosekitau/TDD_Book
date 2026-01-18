@@ -14,6 +14,10 @@ class Money(ABC):
     def times(self, multiplier: int) -> None:
         pass
 
+    @abstractmethod
+    def currency(self) -> None:
+        pass
+
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod

@@ -12,4 +12,5 @@
 - Dollar と Franc が重複している
 - ~~Dollar と Franc で重複する equals を一般化したい~~
 - Dollar と Franc で重複する times を一般化したい
-- Franc と Dollarを比較する
+- ~~Franc と Dollarを比較する~~
+- 通貨の概念を導入したい

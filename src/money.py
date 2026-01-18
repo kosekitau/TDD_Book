@@ -21,10 +21,10 @@ class Money(ABC):
         # 循環参照を避けるためメソッド内呼び出し
         from .dollar import Dollar
 
-        return Dollar(amount=amount)
+        return Dollar(amount=amount, currency="USD")
 
     @staticmethod
     def franc(amount: int) -> "Franc":
         from .franc import Franc
 
-        return Franc(amount=amount)
+        return Franc(amount=amount, currency="CHF")

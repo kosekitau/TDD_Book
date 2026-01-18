@@ -3,9 +3,9 @@ from .money import Money
 
 
 class Dollar(Money):
-    def __init__(self, amount: int) -> None:
+    def __init__(self, amount: int, currency: str) -> None:
         self.amount: int = amount
-        self.currency = "USD"
+        self.currency: str = currency
 
     def times(self, multiplier: int) -> int:
-        return Dollar(amount=self.amount * multiplier)
+        return Money.dollar(amount=self.amount * multiplier)

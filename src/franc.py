@@ -2,9 +2,9 @@ from .money import Money
 
 
 class Franc(Money):
-    def __init__(self, amount: int) -> None:
+    def __init__(self, amount: int, currency: str) -> None:
         self.amount: int = amount
-        self.currency = "CHF"
+        self.currency: str = currency
 
     def times(self, multiplier: int) -> int:
-        return Franc(amount=self.amount * multiplier)
+        return Money.franc(amount=self.amount * multiplier)

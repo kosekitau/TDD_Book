@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class Money(ABC):
-    def __init__(self, amount: int) -> None:
+    def __init__(self, amount: int, currency: str) -> None:
         self.amount: int = amount
+        self.currency: str = currency
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Money):
@@ -14,6 +15,9 @@ class Money(ABC):
     def times(self, multiplier: int) -> None:
         pass
 
+    def return_currency(self) -> str:
+        return self.currency
+
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod
@@ -21,10 +25,10 @@ class Money(ABC):
         # 循環参照を避けるためメソッド内呼び出し
         from .dollar import Dollar
 
-        return Dollar(amount=amount)
+        return Dollar(amount=amount, currency="USD")
 
     @staticmethod
     def franc(amount: int) -> "Franc":
         from .franc import Franc
 
-        return Franc(amount=amount)
+        return Franc(amount=amount, currency="CHF")

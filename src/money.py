@@ -9,11 +9,10 @@ class Money(ABC):
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Money):
             return False
-        return (self.amount == other.amount) and (self.__class__ == other.__class__)
+        return (self.amount == other.amount) and (self.currency == other.currency)
 
-    @abstractmethod
     def times(self, multiplier: int) -> None:
-        pass
+        return Money(amount=self.amount * multiplier, currency=self.currency)
 
     def return_currency(self) -> str:
         return self.currency

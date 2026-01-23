@@ -20,14 +20,11 @@ class Money(ABC):
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod
-    def dollar(amount: int) -> "Dollar":
-        # 循環参照を避けるためメソッド内呼び出し
-        from .dollar import Dollar
+    def dollar(amount: int):
 
-        return Dollar(amount=amount, currency="USD")
+        return Money(amount=amount, currency="USD")
 
     @staticmethod
-    def franc(amount: int) -> "Franc":
-        from .franc import Franc
+    def franc(amount: int):
 
-        return Franc(amount=amount, currency="CHF")
+        return Money(amount=amount, currency="CHF")

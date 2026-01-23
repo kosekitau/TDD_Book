@@ -18,5 +18,8 @@ class Test_Money:
         assert "USD" == Money.dollar(amount=1).return_currency()
 
     def test_SimpleAddition(self) -> None:
-        money = Money.dollar(amount=5).plus(Money.dollar(amount=5))
-        assert money == Money.dollar(amount=10)
+        five = Money.dollar(amount=5)
+        sum_ = five.plus(addend=five)
+        bank = Bank()
+        reduced = bank.reduce(sum_, "USD")  # reduceは式を単純な形に変形させるの意味
+        assert reduced == Money.dollar(amount=10)

@@ -9,11 +9,10 @@ class Money(ABC):
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Money):
             return False
-        return (self.amount == other.amount) and (self.__class__ == other.__class__)
+        return (self.amount == other.amount) and (self.currency == other.currency)
 
-    @abstractmethod
     def times(self, multiplier: int) -> None:
-        pass
+        return Money(amount=self.amount * multiplier, currency=self.currency)
 
     def return_currency(self) -> str:
         return self.currency
@@ -21,14 +20,11 @@ class Money(ABC):
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod
-    def dollar(amount: int) -> "Dollar":
-        # 循環参照を避けるためメソッド内呼び出し
-        from .dollar import Dollar
+    def dollar(amount: int):
 
-        return Dollar(amount=amount, currency="USD")
+        return Money(amount=amount, currency="USD")
 
     @staticmethod
-    def franc(amount: int) -> "Franc":
-        from .franc import Franc
+    def franc(amount: int):
 
-        return Franc(amount=amount, currency="CHF")
+        return Money(amount=amount, currency="CHF")

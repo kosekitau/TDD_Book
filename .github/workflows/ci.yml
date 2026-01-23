@@ -19,7 +19,7 @@ jobs:
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3
         env:
-          CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-          PORT: ${{ secrets.PORT }}
+          CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
+          PORT: ${{ env.PORT }}
         with:
           runCmd: pytest -vv -s tests/

@@ -17,6 +17,9 @@ class Money(ABC):
     def return_currency(self) -> str:
         return self.currency
 
+    def plus(self, addend):
+        return Money(amount=addend.amount + self.amount, currency=self.currency)
+
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod

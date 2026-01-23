@@ -18,8 +18,8 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "CONTAINER_NAME=${{ secrets.CONTAINER_NAME }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
 
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3

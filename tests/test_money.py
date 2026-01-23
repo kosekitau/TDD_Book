@@ -1,5 +1,6 @@
 import pytest
 from src.money import Money
+from src.bank import Bank
 
 
 class Test_Money:
@@ -21,5 +22,7 @@ class Test_Money:
         five = Money.dollar(amount=5)
         sum_ = five.plus(addend=five)
         bank = Bank()
-        reduced = bank.reduce(sum_, "USD")  # reduceは式を単純な形に変形させるの意味
+        reduced = bank.reduce(
+            source=sum_, to="USD"
+        )  # reduceは式を単純な形に変形させるの意味
         assert reduced == Money.dollar(amount=10)

@@ -1,0 +1,19 @@
+name: TDD Book CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: pytest
+        shell: bash
+        run: pytest -vv -s tests/

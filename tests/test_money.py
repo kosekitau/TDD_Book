@@ -34,3 +34,9 @@ class Test_Money:
         sum_: Sum = five.plus(five)
         assert five == sum_.augend  # 被加算数
         assert five == sum_.addend  # 加数
+
+    def test_ReduceSum(self) -> None:
+        sum_ = Sum(augend=Money.dollar(amount=3), addend=Money.dollar(amount=4))
+        bank = Bank()
+        result = bank.reduce(source=sum_, to="USD")
+        assert result == Money.dollar(amount=7)

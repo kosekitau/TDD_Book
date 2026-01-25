@@ -29,9 +29,8 @@ class Test_Money:
         )  # reduceは式を単純な形に変形させるの意味
         assert reduced == Money.dollar(amount=10)
 
-    def test_PlusReturnSum(self):
-        five = Money.dollar(amout=5)
-        result: Expression = five.plus(five)
-        sum_: Sum = Sum(result)
-        assert five == sum.augend
-        assert five == sum.addend
+    def test_PlusReturnSum(self) -> None:
+        five = Money.dollar(amount=5)
+        sum_: Sum = five.plus(five)
+        assert five == sum_.augend  # 被加算数
+        assert five == sum_.addend  # 加数

@@ -21,7 +21,7 @@ class Test_Money:
         assert "USD" == Money.dollar(amount=1).return_currency()
 
     def test_SimpleAddition(self) -> None:
-        five = Money.dollar(amount=5)
+        five: Money = Money.dollar(amount=5)
         sum_ = five.plus(addend=five)
         bank = Bank()
         reduced = bank.reduce(
@@ -30,13 +30,15 @@ class Test_Money:
         assert reduced == Money.dollar(amount=10)
 
     def test_PlusReturnSum(self) -> None:
-        five = Money.dollar(amount=5)
-        sum_: Sum = five.plus(five)
+        five: Money = Money.dollar(amount=5)
+        sum_: Sum = five.plus(addend=five)
         assert five == sum_.augend  # 被加算数
         assert five == sum_.addend  # 加数
 
     def test_ReduceSum(self) -> None:
-        sum_ = Sum(augend=Money.dollar(amount=3), addend=Money.dollar(amount=4))
+        sum_: Sum[Money, Money] = Sum(
+            augend=Money.dollar(amount=3), addend=Money.dollar(amount=4)
+        )
         bank = Bank()
         result = bank.reduce(source=sum_, to="USD")
         assert result == Money.dollar(amount=7)

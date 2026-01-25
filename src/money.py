@@ -1,6 +1,5 @@
 from abc import ABC
 from src.expression import Expression
-from src.sum_ import Sum
 
 
 class Money(Expression):
@@ -19,15 +18,17 @@ class Money(Expression):
     def return_currency(self) -> str:
         return self.currency
 
-    def plus(self, addend):
+    def plus(self, addend) -> "Sum":
+        from src.sum_ import Sum
+
         return Sum(augend=self, addend=addend)
 
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod
-    def dollar(amount: int):
+    def dollar(amount: int) -> "Money":
         return Money(amount=amount, currency="USD")
 
     @staticmethod
-    def franc(amount: int):
+    def franc(amount: int) -> "Money":
         return Money(amount=amount, currency="CHF")

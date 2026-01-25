@@ -42,3 +42,8 @@ class Test_Money:
         bank = Bank()
         result = bank.reduce(source=sum_, to="USD")
         assert result == Money.dollar(amount=7)
+
+    def test_ReduceMoney(self) -> None:
+        bank = Bank()
+        result = bank.reduce(source=Money.dollar(amount=1), to="USD")
+        assert result == Money(amount=1, currency="USD")

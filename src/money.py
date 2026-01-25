@@ -23,6 +23,9 @@ class Money(Expression):
 
         return Sum(augend=self, addend=addend)
 
+    def reduce(self, to: str):
+        return self
+
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す
     @staticmethod

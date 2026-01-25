@@ -1,6 +1,8 @@
 import pytest
 from src.money import Money
 from src.bank import Bank
+from src.expression import Expression
+from src.sum_ import Sum
 
 
 class Test_Money:
@@ -26,3 +28,10 @@ class Test_Money:
             source=sum_, to="USD"
         )  # reduceは式を単純な形に変形させるの意味
         assert reduced == Money.dollar(amount=10)
+
+    def test_PlusReturnSum(self):
+        five = Money.dollar(amout=5)
+        result: Expression = five.plus(five)
+        sum_: Sum = Sum(result)
+        assert five == sum.augend
+        assert five == sum.addend

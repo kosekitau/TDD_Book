@@ -4,8 +4,11 @@ from src.money import Money
 
 class Bank:
     def reduce(self, source: Expression, to: str):
-        sum_: Expression = source
-        return sum_.reduce(to)
+        return source.reduce(self, to)
 
     def addRate(self, from_, to, rate):
         pass
+
+    def rate(self, from_, to) -> int:
+        rate: int = 2 if from_ == "CHF" and to == "USD" else 1
+        return rate

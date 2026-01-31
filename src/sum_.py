@@ -8,7 +8,7 @@ class Sum(Expression):
         self.augend = augend
         self.addend = addend
 
-    def reduce(self, to: str) -> "Money":
+    def reduce(self, bank, to: str) -> "Money":
         from src.money import Money
 
         amount: int = self.augend.amount + self.addend.amount

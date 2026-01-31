@@ -3,5 +3,5 @@ from abc import ABC, abstractmethod
 
 class Expression(ABC):
     @abstractmethod
-    def reduce(self) -> None:
+    def reduce(self, bank, to) -> None:
         pass

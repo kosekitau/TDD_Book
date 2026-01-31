@@ -13,4 +13,6 @@ class Bank:
         self.rates[(from_, to)] = rate
 
     def rate(self, from_, to) -> int:
+        if from_ == to:
+            return 1
         return self.rates[(from_, to)]

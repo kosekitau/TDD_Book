@@ -23,8 +23,9 @@ class Money(Expression):
 
         return Sum(augend=self, addend=addend)
 
-    def reduce(self, to: str):
-        return self
+    def reduce(self, to: str) -> "Money":
+        rate: int = 2 if self.currency == "CHF" and to == "USD" else 1
+        return Money(amount=self.amount / rate, currency=to)
 
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す

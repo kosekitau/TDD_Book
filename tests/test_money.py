@@ -48,8 +48,8 @@ class Test_Money:
         result = bank.reduce(source=Money.dollar(amount=1), to="USD")
         assert result == Money(amount=1, currency="USD")
 
-    def test_ReduceMoneyDifferentCurrency() -> None:
+    def test_ReduceMoneyDifferentCurrency(self) -> None:
         bank = Bank()
-        bank.addRate("CHF", "USD", 2)  # 2フランは1ドル
+        bank.addRate(from_="CHF", to="USD", rate=2)  # 2フランは1ドル
         result = bank.reduce(source=Money.franc(amount=2), to="USD")
         assert result == Money.dollar(amount=1)

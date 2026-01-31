@@ -3,12 +3,14 @@ from src.money import Money
 
 
 class Bank:
-    def reduce(self, source: Expression, to: str):
-        return source.reduce(self, to)
+    def __init__(self) -> None:
+        self.rates: dict = {}
 
-    def addRate(self, from_, to, rate):
-        pass
+    def reduce(self, source: Expression, to: str) -> None:
+        return source.reduce(bank=self, to=to)
+
+    def addRate(self, from_, to, rate) -> None:
+        self.rates[(from_, to)] = rate
 
     def rate(self, from_, to) -> int:
-        rate: int = 2 if from_ == "CHF" and to == "USD" else 1
-        return rate
+        return self.rates[(from_, to)]

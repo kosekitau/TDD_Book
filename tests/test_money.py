@@ -53,3 +53,7 @@ class Test_Money:
         bank.addRate(from_="CHF", to="USD", rate=2)  # 2フランは1ドル
         result = bank.reduce(source=Money.franc(amount=2), to="USD")
         assert result == Money.dollar(amount=1)
+
+    def test_IdentityRate(self) -> None:
+        bank = Bank()
+        assert 1 == bank.rate(from_="USD", to="USD")

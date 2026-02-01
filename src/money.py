@@ -12,13 +12,13 @@ class Money(Expression):
             return False
         return (self.amount == other.amount) and (self.currency == other.currency)
 
-    def times(self, multiplier: int) -> None:
+    def times(self, multiplier: int) -> Expression:
         return Money(amount=self.amount * multiplier, currency=self.currency)
 
     def return_currency(self) -> str:
         return self.currency
 
-    def plus(self, addend) -> "Sum":
+    def plus(self, addend: Expression) -> "Sum":
         from src.sum_ import Sum
 
         return Sum(augend=self, addend=addend)

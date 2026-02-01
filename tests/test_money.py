@@ -59,8 +59,8 @@ class Test_Money:
         assert 1 == bank.rate(from_="USD", to="USD")
 
     def test_MixedAddition(self) -> None:
-        fiveBucks: Money = Money.dollar(amount=5)
-        tenFrancs: Money = Money.franc(amount=10)
+        fiveBucks: Expression = Money.dollar(amount=5)
+        tenFrancs: Expression = Money.franc(amount=10)
         bank = Bank()
         bank.addRate(from_="CHF", to="USD", rate=2)
         result = bank.reduce(source=fiveBucks.plus(addend=tenFrancs), to="USD")

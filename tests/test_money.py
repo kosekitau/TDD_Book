@@ -65,3 +65,12 @@ class Test_Money:
         bank.addRate(from_="CHF", to="USD", rate=2)
         result = bank.reduce(source=fiveBucks.plus(addend=tenFrancs), to="USD")
         assert result == Money.dollar(amount=10)
+
+    def test_SumPlusMoeny(self) -> None:
+        fiveBucks: Expression = Money.dollar(amount=5)
+        tenFrancs: Expression = Money.franc(amount=10)
+        bank = Bank()
+        bank.addRate(from_="CHF", to="USD", rate=2)
+        sum_ = Sum(augend=fiveBucks, addend=tenFrancs).plus(fiveBucks)
+        result = bank.reduce(source=sum_, to="USD")
+        assert result == Money.dollar(amount=15)

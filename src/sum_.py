@@ -18,3 +18,8 @@ class Sum(Expression):
 
     def plus(self, addend) -> "Sum":
         return Sum(augend=self, addend=addend)
+
+    def times(self, multiplier: int):
+        return Sum(
+            augend=self.augend.times(multiplier), addend=self.addend.times(multiplier)
+        )

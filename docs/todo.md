@@ -4,7 +4,7 @@
 - ~~$5 + $5 = $10~~
 - $5 + $5 が Money を返す
 - ~~Sumクラスのplusをちゃんと書く~~
-- Expression.timesをちゃんと書く
+- ~~Expression.timesをちゃんと書く~~
 - ~~Bank.reduce(Money)みたいに、ExpressionでなくMoney単体が入ってきたらどうするか~~
 - Moneyを変換して換算する
 - Reduce(Bank, String)

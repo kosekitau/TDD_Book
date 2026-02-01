@@ -73,12 +73,12 @@ class Test_Money:
 
     def test_SumPlusMoeny(self, sample) -> None:
         fiveBucks, tenFrancs, bank = sample
-        sum_ = Sum(augend=fiveBucks, addend=tenFrancs).plus(addend=fiveBucks)
+        sum_: Sum = Sum(augend=fiveBucks, addend=tenFrancs).plus(addend=fiveBucks)
         result = bank.reduce(source=sum_, to="USD")
         assert result == Money.dollar(amount=15)
 
     def test_SumTimes(self, sample) -> None:
         fiveBucks, tenFrancs, bank = sample
-        sum_ = Sum(augend=fiveBucks, addend=tenFrancs).times(2)
+        sum_: Sum = Sum(augend=fiveBucks, addend=tenFrancs).times(multiplier=2)
         result = bank.reduce(source=sum_, to="USD")
         assert result == Money.dollar(amount=20)

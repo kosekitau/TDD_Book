@@ -12,19 +12,20 @@ class Money(Expression):
             return False
         return (self.amount == other.amount) and (self.currency == other.currency)
 
-    def times(self, multiplier: int) -> None:
+    def times(self, multiplier: int) -> Expression:
         return Money(amount=self.amount * multiplier, currency=self.currency)
 
     def return_currency(self) -> str:
         return self.currency
 
-    def plus(self, addend) -> "Sum":
+    def plus(self, addend: Expression) -> "Sum":
         from src.sum_ import Sum
 
         return Sum(augend=self, addend=addend)
 
-    def reduce(self, to: str):
-        return self
+    def reduce(self, bank, to: str) -> "Money":
+        rate: int = bank.rate(self.currency, to)
+        return Money(amount=self.amount / rate, currency=to)
 
     # staticmethodはインスタンスを作らず直接このmethodを呼び出せる
     # ex):Money.dollar()と書くだけでDollar(amount)を返す

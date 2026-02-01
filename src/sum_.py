@@ -8,8 +8,18 @@ class Sum(Expression):
         self.augend = augend
         self.addend = addend
 
-    def reduce(self, to: str) -> "Money":
+    def reduce(self, bank, to: str) -> "Money":
         from src.money import Money
 
-        amount: int = self.augend.amount + self.addend.amount
+        amount: int = (
+            self.augend.reduce(bank, to).amount + self.addend.reduce(bank, to).amount
+        )
         return Money(amount=amount, currency=to)
+
+    def plus(self, addend) -> "Sum":
+        return Sum(augend=self, addend=addend)
+
+    def times(self, multiplier: int):
+        return Sum(
+            augend=self.augend.times(multiplier), addend=self.addend.times(multiplier)
+        )

@@ -47,3 +47,38 @@ class Test_Money:
         bank = Bank()
         result = bank.reduce(source=Money.dollar(amount=1), to="USD")
         assert result == Money(amount=1, currency="USD")
+
+    def test_ReduceMoneyDifferentCurrency(self) -> None:
+        bank = Bank()
+        bank.addRate(from_="CHF", to="USD", rate=2)  # 2フランは1ドル
+        result = bank.reduce(source=Money.franc(amount=2), to="USD")
+        assert result == Money.dollar(amount=1)
+
+    def test_IdentityRate(self) -> None:
+        bank = Bank()
+        assert 1 == bank.rate(from_="USD", to="USD")
+
+    @pytest.fixture
+    def sample(self) -> tuple[Money, Money, Bank]:
+        fiveBucks: Expression = Money.dollar(amount=5)
+        tenFrancs: Expression = Money.franc(amount=10)
+        bank = Bank()
+        bank.addRate(from_="CHF", to="USD", rate=2)
+        return fiveBucks, tenFrancs, bank
+
+    def test_MixedAddition(self, sample) -> None:
+        fiveBucks, tenFrancs, bank = sample
+        result = bank.reduce(source=fiveBucks.plus(addend=tenFrancs), to="USD")
+        assert result == Money.dollar(amount=10)
+
+    def test_SumPlusMoeny(self, sample) -> None:
+        fiveBucks, tenFrancs, bank = sample
+        sum_: Sum = Sum(augend=fiveBucks, addend=tenFrancs).plus(addend=fiveBucks)
+        result = bank.reduce(source=sum_, to="USD")
+        assert result == Money.dollar(amount=15)
+
+    def test_SumTimes(self, sample) -> None:
+        fiveBucks, tenFrancs, bank = sample
+        sum_: Sum = Sum(augend=fiveBucks, addend=tenFrancs).times(multiplier=2)
+        result = bank.reduce(source=sum_, to="USD")
+        assert result == Money.dollar(amount=20)

@@ -1,9 +1,13 @@
 # TODOリスト
 
-- $5 + 10 CHF = $10（レートが2:1の場合）
-- $5 + $5 = $10
-- $5 + $5 が Money を返す
-- Bank.reduce(Money)みたいに、ExpressionでなくMoney単体が入ってきたらどうするか
+- ~~$5 + 10 CHF = $10（レートが2:1の場合）~~
+- ~~$5 + $5 = $10~~
+- ~~$5 + $5 が Money を返す~~
+- ~~Sumクラスのplusをちゃんと書く~~
+- ~~Expression.timesをちゃんと書く~~
+- ~~Bank.reduce(Money)みたいに、ExpressionでなくMoney単体が入ってきたらどうするか~~
+- Moneyを変換して換算する
+- Reduce(Bank, String)
 - ~~$5 * 2 = $10~~
 - ~~Dollarの副作用どうする？ ~~
 - Moneyの丸め処理どうする？

@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING
-from src.expression import Expression
+from MoneyExample.expression import Expression
 
 
 class Sum(Expression):
@@ -9,7 +9,7 @@ class Sum(Expression):
         self.addend = addend
 
     def reduce(self, bank, to: str) -> "Money":
-        from src.money import Money
+        from MoneyExample.money import Money
 
         amount: int = (
             self.augend.reduce(bank, to).amount + self.addend.reduce(bank, to).amount

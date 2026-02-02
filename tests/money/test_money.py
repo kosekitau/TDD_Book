@@ -1,8 +1,8 @@
 import pytest
-from src.money import Money
-from src.bank import Bank
-from src.expression import Expression
-from src.sum_ import Sum
+from MoneyExample.money import Money
+from MoneyExample.bank import Bank
+from MoneyExample.expression import Expression
+from MoneyExample.sum_ import Sum
 
 
 class Test_Money:

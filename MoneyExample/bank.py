@@ -1,5 +1,5 @@
-from src.expression import Expression
-from src.money import Money
+from MoneyExample.expression import Expression
+from MoneyExample.money import Money
 
 
 class Bank:

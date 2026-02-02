@@ -1,5 +1,5 @@
 from abc import ABC
-from src.expression import Expression
+from MoneyExample.expression import Expression
 
 
 class Money(Expression):
@@ -19,7 +19,7 @@ class Money(Expression):
         return self.currency
 
     def plus(self, addend: Expression) -> "Sum":
-        from src.sum_ import Sum
+        from MoneyExample.sum_ import Sum
 
         return Sum(augend=self, addend=addend)
 

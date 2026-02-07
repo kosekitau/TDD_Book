@@ -1,7 +1,11 @@
 class WasRun:
     def __init__(self, name) -> None:
-        pass
         self.wasRun = None
+        self.name = name
+
+    def run(self) -> None:
+        method = getattr(self, self.name)
+        method()
 
     def testMethod(self) -> None:
         pass
@@ -10,5 +14,5 @@ class WasRun:
 
 test: WasRun = WasRun(name="testMethod")
 print(test.wasRun)
-test.testMethod()
+test.run()
 print(test.wasRun)

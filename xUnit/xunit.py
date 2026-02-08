@@ -23,16 +23,17 @@ class WasRun(TestCase):
 class TestCaseTest(TestCase):
     """ここがテストを先に書く場になる"""
 
+    def setUp(self) -> None:
+        """fixture"""
+        self.test = WasRun(name="testMethod")
+
     def testRunning(self) -> None:
-        test: WasRun = WasRun(name="testMethod")
-        assert not test.wasRun
-        test.run()
-        assert test.wasRun
+        self.test.run()
+        assert self.test.wasRun
 
     def testSetUp(self) -> None:
-        test: WasRun = WasRun(name="testMethod")
-        test.run()
-        assert test.wasSetUp
+        self.test.run()
+        assert self.test.wasSetUp
 
 
 TestCaseTest(name="testRunning").run()

@@ -34,5 +34,11 @@ class TestCaseTest(TestCase):
         test.run()
         assert test.log == "setUp testMethod tearDown "
 
+    def testResult(self) -> None:
+        test = WasRun(name="testMethod")
+        result: str = test.run()
+        assert result.summary() == "1 run, 0 failed"
+
 
 TestCaseTest(name="testTemplateMethod").run()
+TestCaseTest(name="testResult").run()

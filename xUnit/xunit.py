@@ -5,10 +5,14 @@ class TestCase:
     def setUp(self) -> None:
         pass
 
+    def tearDown(self) -> None:
+        pass
+
     def run(self) -> None:
         self.setUp()
         method = getattr(self, self.name)
         method()
+        self.tearDown()
 
 
 class WasRun(TestCase):
@@ -18,6 +22,9 @@ class WasRun(TestCase):
     def testMethod(self) -> None:
         self.log = self.log + "testMethod "
 
+    def tearDown(self) -> None:
+        self.log = self.log + "tearDown "
+
 
 class TestCaseTest(TestCase):
     """ここがテストを先に書く場になる"""
@@ -25,7 +32,7 @@ class TestCaseTest(TestCase):
     def testTemplateMethod(self) -> None:
         test = WasRun(name="testMethod")
         test.run()
-        assert test.log == "setUp testMethod tearDown"
+        assert test.log == "setUp testMethod tearDown "
 
 
 TestCaseTest(name="testTemplateMethod").run()

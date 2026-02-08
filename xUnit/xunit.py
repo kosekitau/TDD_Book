@@ -1,3 +1,18 @@
+class TestResult:
+    def __init__(self) -> None:
+        self.runCount = 0
+        self.errorCount = 0
+
+    def testStarted(self) -> None:
+        self.runCount += 1
+
+    def testFailed(self) -> None:
+        self.errorCount += 1
+
+    def summary(self) -> str:
+        return f"{self.runCount} run, {self.errorCount} failed"
+
+
 class TestCase:
     def __init__(self, name: str) -> None:
         self.name: str = name
@@ -8,11 +23,17 @@ class TestCase:
     def tearDown(self) -> None:
         pass
 
-    def run(self) -> None:
+    def run(self) -> TestResult:
+        result = TestResult()
+        result.testStarted()
         self.setUp()
-        method = getattr(self, self.name)
-        method()
+        try:
+            method = getattr(self, self.name)
+            method()
+        except:
+            result.testFailed()
         self.tearDown()
+        return result
 
 
 class WasRun(TestCase):
@@ -21,6 +42,9 @@ class WasRun(TestCase):
 
     def testMethod(self) -> None:
         self.log = self.log + "testMethod "
+
+    def testBrokenMethod(self) -> None:
+        raise Exception
 
     def tearDown(self) -> None:
         self.log = self.log + "tearDown "
@@ -34,5 +58,24 @@ class TestCaseTest(TestCase):
         test.run()
         assert test.log == "setUp testMethod tearDown "
 
+    def testResult(self) -> None:
+        test = WasRun(name="testMethod")
+        result: TestResult = test.run()
+        assert result.summary() == "1 run, 0 failed"
 
-TestCaseTest(name="testTemplateMethod").run()
+    def testFailedResult(self) -> None:
+        test = WasRun(name="testMethod")
+        result: TestResult = test.run()
+        # assert result.summary() == "1 run, 1 failed"
+
+    def testFailedResultFormatting(self) -> None:
+        result = TestResult()
+        result.testStarted()
+        result.testFailed()
+        assert result.summary() == "1 run, 1 failed"
+
+
+print(TestCaseTest(name="testTemplateMethod").run().summary())
+print(TestCaseTest(name="testResult").run().summary())
+print(TestCaseTest(name="testFailedResult").run().summary())
+print(TestCaseTest(name="testFailedResultFormatting").run().summary())

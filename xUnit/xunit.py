@@ -2,26 +2,39 @@ class TestCase:
     def __init__(self, name: str) -> None:
         self.name: str = name
 
+    def setUp(self) -> None:
+        pass
+
     def run(self) -> None:
+        self.setUp()
         method = getattr(self, self.name)
         method()
 
 
 class WasRun(TestCase):
-    def __init__(self, name: str) -> None:
+    def setUp(self) -> None:
         self.wasRun = None
-        super().__init__(name=name)
+        self.wasSetUp = 1
 
     def testMethod(self) -> None:
         self.wasRun = 1
 
 
 class TestCaseTest(TestCase):
+    """ここがテストを先に書く場になる"""
+
+    def setUp(self) -> None:
+        """fixture"""
+        self.test = WasRun(name="testMethod")
+
     def testRunning(self) -> None:
-        test: WasRun = WasRun(name="testMethod")
-        assert not test.wasRun
-        test.run()
-        assert test.wasRun
+        self.test.run()
+        assert self.test.wasRun
+
+    def testSetUp(self) -> None:
+        self.test.run()
+        assert self.test.wasSetUp
 
 
 TestCaseTest(name="testRunning").run()
+TestCaseTest(name="testSetUp").run()

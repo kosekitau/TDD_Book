@@ -50,9 +50,15 @@ class TestCaseTest(TestCase):
 
     def testResult(self) -> None:
         test = WasRun(name="testMethod")
-        result = test.run()
+        result: TestResult = test.run()
         assert result.summary() == "1 run, 0 failed"
+
+    def testFailedResult(self) -> None:
+        test = WasRun(name="testMethod")
+        result: TestResult = test.run()
+        assert result.summary() == "1 run, 1 failed"
 
 
 TestCaseTest(name="testTemplateMethod").run()
 TestCaseTest(name="testResult").run()
+TestCaseTest(name="testFailedResult").run()

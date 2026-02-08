@@ -33,7 +33,7 @@ class TestCaseTest(TestCase):
 
     def testSetUp(self) -> None:
         self.test.run()
-        assert self.test.wasSetUp
+        assert self.test.log == "setUp"
 
 
 TestCaseTest(name="testRunning").run()

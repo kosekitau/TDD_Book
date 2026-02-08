@@ -12,15 +12,12 @@ class TestCase:
 
 
 class WasRun(TestCase):
-    def __init__(self, name: str) -> None:
+    def setUp(self) -> None:
         self.wasRun = None
-        super().__init__(name=name)
+        self.wasSetUp = 1
 
     def testMethod(self) -> None:
         self.wasRun = 1
-
-    def setUp(self) -> None:
-        self.wasSetUp = 1
 
 
 class TestCaseTest(TestCase):

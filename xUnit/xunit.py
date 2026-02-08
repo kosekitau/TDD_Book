@@ -13,28 +13,19 @@ class TestCase:
 
 class WasRun(TestCase):
     def setUp(self) -> None:
-        self.wasRun = None
-        self.wasSetUp = 1
+        self.log: str = "setUp "
 
     def testMethod(self) -> None:
-        self.wasRun = 1
+        self.log = self.log + "testMethod "
 
 
 class TestCaseTest(TestCase):
     """ここがテストを先に書く場になる"""
 
-    def setUp(self) -> None:
-        """fixture"""
-        self.test = WasRun(name="testMethod")
-
-    def testRunning(self) -> None:
-        self.test.run()
-        assert self.test.wasRun
-
-    def testSetUp(self) -> None:
-        self.test.run()
-        assert self.test.wasSetUp
+    def testTemplateMethod(self) -> None:
+        test = WasRun(name="testMethod")
+        test.run()
+        assert test.log == "setUp testMethod tearDown"
 
 
-TestCaseTest(name="testRunning").run()
-TestCaseTest(name="testSetUp").run()
+TestCaseTest(name="testTemplateMethod").run()

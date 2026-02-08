@@ -8,11 +8,12 @@ class TestCase:
     def tearDown(self) -> None:
         pass
 
-    def run(self) -> None:
+    def run(self):
         self.setUp()
         method = getattr(self, self.name)
         method()
         self.tearDown()
+        return TestResult()
 
 
 class WasRun(TestCase):
@@ -26,6 +27,11 @@ class WasRun(TestCase):
         self.log = self.log + "tearDown "
 
 
+class TestResult:
+    def summary(self) -> str:
+        return "1 run, 0 failed"
+
+
 class TestCaseTest(TestCase):
     """ここがテストを先に書く場になる"""
 
@@ -36,7 +42,7 @@ class TestCaseTest(TestCase):
 
     def testResult(self) -> None:
         test = WasRun(name="testMethod")
-        result: str = test.run()
+        result = test.run()
         assert result.summary() == "1 run, 0 failed"
 
 

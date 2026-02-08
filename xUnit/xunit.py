@@ -25,7 +25,7 @@ class TestCaseTest(TestCase):
     def testTemplateMethod(self) -> None:
         test = WasRun(name="testMethod")
         test.run()
-        assert test.log == "setUp testMethod "
+        assert test.log == "setUp testMethod tearDown"
 
 
 TestCaseTest(name="testTemplateMethod").run()

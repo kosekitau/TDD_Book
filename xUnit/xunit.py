@@ -14,11 +14,11 @@ class TestCase:
 class WasRun(TestCase):
     def setUp(self) -> None:
         self.wasRun = None
-        self.wasSetUp = 1
-        self.log = "setUp"
+        self.log: str = "setUp "
 
     def testMethod(self) -> None:
         self.wasRun = 1
+        self.log = self.log + "testMethod "
 
 
 class TestCaseTest(TestCase):
@@ -34,7 +34,7 @@ class TestCaseTest(TestCase):
 
     def testSetUp(self) -> None:
         self.test.run()
-        assert self.test.log == "setUp"
+        assert self.test.log == "setUp testMethod "
 
 
 TestCaseTest(name="testRunning").run()
